@@ -8,6 +8,8 @@
 ;;; Code:
 
 ;; Navigate window layouts with "C-c <left>" and "C-c <right>"
+;;----------------------------------------------------------------------------
+;;(add-hook 'after-init-hook 'winner-mode)
 
 (add-hook 'after-init-hook 'winner-mode)
 
