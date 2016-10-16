@@ -12,6 +12,18 @@
 
 (global-set-key (kbd "C-z") 'sanityinc/maybe-suspend-frame)
 
+;;
+
+;;----------------------------------------------------------------------------
+;; Highlight the current line. Set a custom face, so we can recognize
+;; from the normal marking (selection).
+;;----------------------------------------------------------------------------
+(defface hl-line '((t (:background "DimGray")))
+  "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+;; Turn it on for all modes by default
+(global-hl-line-mode nil)
+
 
 
 ;; Suppress GUI features
@@ -66,6 +78,19 @@
   (when (maybe-require-package 'ns-auto-titlebar)
     (ns-auto-titlebar-mode)))
 
+(defun zoom (n)
+  "with positive N, increase the font size, otherwise decrease it"
+  (set-face-attribute 'default (selected-frame) :height
+                      (+ (face-attribute 'default :height) (* (if (> n 0) 1 -1) 10))))
+(global-set-key (kbd "C-+")      '(lambda nil (interactive) (zoom 1)))
+(global-set-key (kbd "C--")      '(lambda nil (interactive) (zoom -1)))
+
+
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (with-selected-frame frame
+              (unless window-system
+                (set-frame-parameter nil 'menu-bar-lines 0)))))
 
 (setq frame-title-format
       '((:eval (if (buffer-file-name)

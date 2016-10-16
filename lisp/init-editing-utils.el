@@ -19,19 +19,25 @@
  buffers-menu-max-size 30
  case-fold-search t
  column-number-mode t
+ delete-selection-mode t
+ display-time-24hr-format t
+ echo-keystrokes 0.1
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain
  indent-tabs-mode nil
- create-lockfiles nil
- auto-save-default nil
+ kill-whole-line t
  make-backup-files nil
  mouse-yank-at-point t
+ query-replace-highlight t
+ require-final-newline t
  save-interprogram-paste-before-kill t
  scroll-preserve-screen-position 'always
+ search-highlight t
  set-mark-command-repeat-pop t
  tooltip-delay 1.5
  truncate-lines nil
- truncate-partial-width-windows nil)
+ truncate-partial-width-windows nil
+ )
 
 (add-hook 'after-init-hook 'delete-selection-mode)
 
@@ -140,6 +146,21 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
+
+
+;;----------------------------------------------------------------------------
+;; Show matching parens
+;;----------------------------------------------------------------------------
+(add-hook 'after-init-hook 'show-paren-mode)
+
+;;----------------------------------------------------------------------------
+;; Expand region
+;;----------------------------------------------------------------------------
+(require-package 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;;----------------------------------------------------------------------------
 ;; Don't disable case-change functions
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -154,6 +175,7 @@
 
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
+(global-set-key (kbd "C-c g") 'goto-line)
 
 (when (maybe-require-package 'avy)
   (global-set-key (kbd "C-;") 'avy-goto-char-timer))
@@ -162,7 +184,6 @@
 ;; multiple-cursors
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-+") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Train myself to use M-f and M-b instead
@@ -273,6 +294,17 @@ With arg N, insert N newlines."
           ((inhibit-field-text-motion t))
         (sort-subr nil 'forward-line 'end-of-line nil nil
                    (lambda (s1 s2) (eq (random 2) 0)))))))
+
+;;----------------------------------------------------------------------------
+;; Comment and uncomment
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "C-c C-c")  'comment-or-uncomment-region)
+
+
+;;----------------------------------------------------------------------------
+;; Quick access to init.el
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "<f12>") (lambda()(interactive)(find-file "~/.emacs.d/init.el")))
 
 
 
