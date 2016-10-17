@@ -1,3 +1,6 @@
-[submodule "snippets/ruby-mode"]
-	path = snippets/ruby-mode
+[submodule "snippets/yasnippet-snippets"]
+	path = snippets/yasnippet-snippets
+	url = git@github.com:AndreaCrotti/yasnippet-snippets.git
+[submodule "snippets/yasnippet-ruby-mode"]
+	path = snippets/yasnippet-ruby-mode
 	url = git@github.com:bmaland/yasnippet-ruby-mode.git
