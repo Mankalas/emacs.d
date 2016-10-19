@@ -309,7 +309,7 @@ With arg N, insert N newlines."
 ;;----------------------------------------------------------------------------
 ;; Yasnippet
 ;;----------------------------------------------------------------------------
-(setq yas-snippet-dirs '("~/.emacs.d/snippets/yasnippet-ruby-mode"
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"
                          "~/.emacs.d/snippets/yasnippet-snippets"
                          "~/.emacs.d/snippets/custom"))
 (yas-global-mode t)
