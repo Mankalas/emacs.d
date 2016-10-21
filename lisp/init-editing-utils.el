@@ -337,6 +337,11 @@ ORIG is the advised function, which is called with its ARGS."
 
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
+(defun nuke-all-buffers ()
+  "Kill all buffers, leaving *scratch* only."
+  (interactive)
+  (mapcar (lambda (x) (kill-buffer x)) (buffer-list)) (delete-other-windows))
+
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here
