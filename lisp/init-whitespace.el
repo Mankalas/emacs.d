@@ -21,7 +21,7 @@
   (diminish 'whitespace-cleanup-mode))
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
-
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (provide 'init-whitespace)
 ;;; init-whitespace.el ends here
