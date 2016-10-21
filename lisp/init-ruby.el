@@ -126,6 +126,8 @@
 
 ;; (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
 
+;;; ERB
+;; (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
 
 
 (provide 'init-ruby)
