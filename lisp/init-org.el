@@ -161,14 +161,17 @@ typical word processor."
 ;;; To-do settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
-              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
-      org-todo-repeat-to-state "NEXT")
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+              (sequence "DEV(v)" "BLOCKED(b)" "CI(j)"
+                        "WAITING FOR CODE REVIEW(a)" "CODE REVIEW(r)"
+                        "WAITING FOR WIP(c)" "WIP TEST(w)"
+                        "MERGING(e)" "MERGED(m)"
+                        "QA(q)" "DONE(z)")
+              )))
 
 (setq org-todo-keyword-faces
       (quote (("NEXT" :inherit warning)
-              ("PROJECT" :inherit font-lock-string-face))))
+              ("DEV" :inherit warning))))
 
 
 
