@@ -21,6 +21,7 @@
                 (run-hooks 'prog-mode-hook)))))
 
 (add-hook 'ruby-mode-hook 'subword-mode)
+(add-hook 'ruby-mode-hook 'flycheck-mode)
 
 (after-load 'page-break-lines
   (push 'ruby-mode page-break-lines-modes))
