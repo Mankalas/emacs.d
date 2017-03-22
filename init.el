@@ -101,6 +101,7 @@
 (require 'init-ruby)
 (require 'init-rails)
 (require 'init-rspec-mode)
+(require 'init-feature-mode)
 (require 'init-sql)
 (require 'init-ocaml)
 (require 'init-j)

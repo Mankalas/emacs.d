@@ -108,6 +108,8 @@ typical word processor."
 
 ;;; Capturing
 
+(setq org-default-notes-file "~/.org/notes.org")
+
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
@@ -161,12 +163,9 @@ typical word processor."
 ;;; To-do settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "DEV(v)" "BLOCKED(b)" "CI(j)"
-                        "WAITING FOR CODE REVIEW(a)" "CODE REVIEW(r)"
-                        "WAITING FOR WIP(c)" "WIP TEST(w)"
-                        "MERGING(e)" "MERGED(m)"
-                        "QA(q)" "DONE(z)")
+      (quote ((sequence "TODO" "DEV(v!)" "BLOCKED(b@)" "CI(j)" "WAITING
+              FOR CODE REVIEW(a!)" "CODE REVIEW(r!)" "WAITING FOR
+              WIP(c)" "WIP(w)" "MERGING(e!)" "MERGED(m!)" "|" "DONE(z!)" "CANCELLED(x@)")
               )))
 
 (setq org-todo-keyword-faces
@@ -176,6 +175,15 @@ typical word processor."
 
 
 ;;; Agenda views
+
+(setq org-agenda-files (list "~/.org/todo.org"
+                             "~/.org/gcal.org"
+                             "~/.org/notes.org"))
+
+(require 'org-gcal)
+(setq org-gcal-client-id "449686601575-si6gq69i7douufuoonp75ppn7id36ip0.apps.googleusercontent.com"
+      org-gcal-client-secret "Snd5S5QJn7y741_o6NnaqH_9"
+      org-gcal-file-alist '(("vincent.boucheny@powershop.co.nz" .  "~/.org/gcal.org")))
 
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
