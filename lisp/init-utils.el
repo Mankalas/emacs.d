@@ -76,6 +76,21 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
+;;----------------------------------------------------------------------------
+;; Copy current buffer's path to the clipboard
+;;----------------------------------------------------------------------------
+(defun copy-current-buffer-path-to-clipboard ()
+  "Put the current buffer's path on the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
+
 
 (provide 'init-utils)
 ;;; init-utils.el ends here
