@@ -163,15 +163,8 @@ typical word processor."
 ;;; To-do settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO" "DEV(v!)" "BLOCKED(b@)" "CI(j)" "WAITING
-              FOR CODE REVIEW(a!)" "CODE REVIEW(r!)" "WAITING FOR
-              WIP(c)" "WIP(w)" "MERGING(e!)" "MERGED(m!)" "|" "DONE(z!)" "CANCELLED(x@)")
+      (quote ((sequence "TODO" "DOING(g!)" "|" "DONE(d@/!)" "CANCELLED(x@/!)")
               )))
-
-(setq org-todo-keyword-faces
-      (quote (("NEXT" :inherit warning)
-              ("DEV" :inherit warning))))
-
 
 
 ;;; Agenda views
