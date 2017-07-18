@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: expect
-# key: exp
-# --
-expect(${1:expectee}).to ${2:expectation}

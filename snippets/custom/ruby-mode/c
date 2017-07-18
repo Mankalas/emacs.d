@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: context (RSpec)
-# key: c
-# --
-context '${1:context}' do
-  it '${2:description}' do
-    $0
-  end
-end

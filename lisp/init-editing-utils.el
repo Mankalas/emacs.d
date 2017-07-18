@@ -306,14 +306,6 @@ With arg N, insert N newlines."
 ;;----------------------------------------------------------------------------
 (global-set-key (kbd "<f12>") (lambda()(interactive)(find-file "~/.emacs.d/init.el")))
 
-;;----------------------------------------------------------------------------
-;; Yasnippet
-;;----------------------------------------------------------------------------
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"
-                         "~/.emacs.d/snippets/yasnippet-snippets"
-                         "~/.emacs.d/snippets/custom"))
-(yas-global-mode t)
-
 
 
 (require-package 'highlight-escape-sequences)
