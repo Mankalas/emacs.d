@@ -23,5 +23,9 @@
 (global-set-key [remap just-one-space] 'cycle-spacing)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; (require 'ws-butler)
+;; (ws-butler-global-mode t)
+
+
 (provide 'init-whitespace)
 ;;; init-whitespace.el ends here
