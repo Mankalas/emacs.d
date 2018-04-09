@@ -112,7 +112,6 @@ typical word processor."
 
 ;;(add-hook 'org-mode-hook 'buffer-face-mode)
 
-
 (setq org-support-shift-select t)
 
 ;;; Capturing
@@ -178,10 +177,10 @@ typical word processor."
 
 ;;; Agenda views
 
-(require 'org-gcal)
-(setq org-gcal-client-id "449686601575-si6gq69i7douufuoonp75ppn7id36ip0.apps.googleusercontent.com"
-      org-gcal-client-secret "Snd5S5QJn7y741_o6NnaqH_9"
-      org-gcal-file-alist '(("vincent.boucheny@powershop.co.nz" .  "~/.org/gcal.org")))
+;; (require 'org-gcal)
+;; (setq org-gcal-client-id "449686601575-si6gq69i7douufuoonp75ppn7id36ip0.apps.googleusercontent.com"
+;;       org-gcal-client-secret "Snd5S5QJn7y741_o6NnaqH_9"
+;;       org-gcal-file-alist '(("vincent.boucheny@fluxfederation" .  "~/.org/gcal.org")))
 
 (setq org-agenda-files '("~/org/flux.org"))
 
