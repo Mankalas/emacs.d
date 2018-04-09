@@ -44,11 +44,20 @@
 (setq org-log-done t
       org-edit-timestamp-down-means-later t
       org-hide-emphasis-markers t
+      org-archive-mark-done nil
       org-catch-invisible-edits 'show
       org-export-coding-system 'utf-8
       org-fast-tag-selection-single-key 'expert
       org-html-validation-link nil
       org-export-kill-product-buffer-when-displayed t
+      org-enforce-todo-dependencies t ; forces to mark all child tasks
+                                      ; as "DONE" before marking the
+                                      ; parent as "DONE"
+      org-log-redeadline (quote time) ; causes Org to insert
+                                      ; annotations when you change
+                                      ; the deadline of a task
+      org-log-reschedule (quote time) ; same as above, but for the
+                                      ; scheduled dates
       org-tags-column 80)
 
 
@@ -108,7 +117,7 @@ typical word processor."
 
 ;;; Capturing
 
-(setq org-default-notes-file "~/.org/notes.org")
+(setq org-default-notes-file "~/org/flux.org")
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
@@ -169,14 +178,12 @@ typical word processor."
 
 ;;; Agenda views
 
-(setq org-agenda-files (list "~/.org/todo.org"
-                             "~/.org/gcal.org"
-                             "~/.org/notes.org"))
-
 (require 'org-gcal)
 (setq org-gcal-client-id "449686601575-si6gq69i7douufuoonp75ppn7id36ip0.apps.googleusercontent.com"
       org-gcal-client-secret "Snd5S5QJn7y741_o6NnaqH_9"
       org-gcal-file-alist '(("vincent.boucheny@powershop.co.nz" .  "~/.org/gcal.org")))
+
+(setq org-agenda-files '("~/org/flux.org"))
 
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
