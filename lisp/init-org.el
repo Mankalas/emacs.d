@@ -184,16 +184,32 @@ typical word processor."
 
 (setq org-agenda-files '("~/org/flux.org"))
 
+(defun after-load-org ()
+  (add-to-list 'org-modules 'org-timer 'org-habit))
+(eval-after-load "org" '(after-load-org))
+
+(require 'org-alert)
+(setq alert-default-style 'libnotify)
+
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
+(defun air-org-skip-subtree-if-priority (priority)
+  "Skip an agenda subtree if it has a priority of PRIORITY.
+
+PRIORITY may be one of the characters ?A, ?B, or ?C."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+        (pri-value (* 1000 (- org-lowest-priority priority)))
+        (pri-current (org-get-priority (thing-at-point 'line t))))
+    (if (= pri-value pri-current)
+        subtree-end
+      nil)))
 
 (let ((active-project-match "-INBOX/PROJECT"))
-
   (setq org-stuck-projects
         `(,active-project-match ("NEXT")))
 
-  (setq org-agenda-compact-blocks t
-        org-agenda-sticky t
+  (setq ;org-agenda-compact-blocks t
+        ;org-agenda-sticky t
         org-agenda-start-on-weekday nil
         org-agenda-span 'day
         org-agenda-include-diary nil
@@ -207,6 +223,15 @@ typical word processor."
         `(("N" "Notes" tags "NOTE"
            ((org-agenda-overriding-header "Notes")
             (org-tags-match-list-sublevels t)))
+          ("c" "Simple agenda view"
+           ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "")
+            (alltodo ""
+                     ((org-agenda-skip-function
+                     '(or (air-org-skip-subtree-if-priority ?A)
+                          (org-agenda-skip-if nil '(scheduled deadline))))))))
           ("g" "GTD"
            ((agenda "" nil)
             (tags "INBOX"
@@ -331,8 +356,6 @@ typical word processor."
 
 (setq org-archive-mark-done nil)
 (setq org-archive-location "%s_archive::* Archive")
-
-
 
 
 
