@@ -88,6 +88,7 @@
 
 ;;; ERB
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
+(require-package 'web-mode)
 (require 'web-mode)
 (defun my-web-mode-hook ()
   (setq web-mode-markup-indent-offset 2)
