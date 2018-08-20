@@ -63,7 +63,9 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
-(require 'init-selectrum)
+(require 'init-smex)
+(require 'init-ivy)
+;; (require 'init-helm)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
@@ -81,13 +83,13 @@
 (require 'init-projectile)
 
 (require 'init-compile)
-(require 'init-crontab)
+;; (require 'init-crontab)
 (require 'init-textile)
 (require 'init-markdown)
 (require 'init-csv)
-;;(require 'init-erlang)
+;; (require 'init-erlang)
 (require 'init-javascript)
-;;(require 'init-php)
+;; (require 'init-php)
 (require 'init-org)
 (require 'init-nxml)
 (require 'init-html)
@@ -112,7 +114,7 @@
 ;; (maybe-require-package 'nginx-mode)
 
 (require 'init-paredit)
-(require 'init-lisp)
+;; (require 'init-lisp)
 ;; (require 'init-slime)
 ;; (require 'init-clojure)
 ;; (require 'init-clojure-cider)
@@ -125,15 +127,18 @@
 
 (require 'init-folding)
 (require 'init-dash)
+;; (require 'init-slack)
+;; (require 'init-jira)
 
-;;(require 'init-twitter)
+;; (require 'init-twitter)
 ;; (require 'init-mu)
-(require 'init-ledger)
+;; (require 'init-ledger)
 ;; Extra packages which don't require any configuration
 
-;;(require-package 'gnuplot)
-;;(require-package 'lua-mode)
-(require-package 'htmlize)
+;; (require-package 'gnuplot)
+;; (require-package 'lua-mode)
+;; (require-package 'htmlize)
+;; (require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
 (unless (eq system-type 'windows-nt)
