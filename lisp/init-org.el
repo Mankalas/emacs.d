@@ -125,8 +125,10 @@ typical word processor."
          "* NEXT %?\n%U\n" :clock-resume t)
         ("n" "note" entry (file "")
          "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
+        ("j" "Journal entry" plain
+         (file+datetree+prompt "~/Dropbox/journal.org")
+         "%K - %a\n%i\n%?\n")
         ))
-
 
 
 ;;; Refiling
