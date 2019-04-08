@@ -190,9 +190,6 @@ typical word processor."
   (add-to-list 'org-modules 'org-timer 'org-habit))
 (eval-after-load "org" '(after-load-org))
 
-(require 'org-alert)
-(setq alert-default-style 'libnotify)
-
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
 (defun air-org-skip-subtree-if-priority (priority)
