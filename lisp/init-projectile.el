@@ -16,6 +16,7 @@
 
   (maybe-require-package 'ibuffer-projectile))
 
+(setq projectile-keymap-prefix (kbd "C-c p"))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here
