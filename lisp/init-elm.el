@@ -3,7 +3,9 @@
 ;;; Code:
 
 (when (maybe-require-package 'elm-mode)
-  (with-eval-after-load 'elm-mode
+  (setq-default elm-tags-on-save t)
+  (setq-default elm-tags-exclude-elm-stuff nil)
+  (after-load 'elm-mode
     (diminish 'elm-indent-mode)
     (when (executable-find "elm-format")
       (setq-default elm-format-on-save t)))
