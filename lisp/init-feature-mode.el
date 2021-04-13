@@ -18,7 +18,7 @@
                                     (replace-regexp-in-string "{options}" opts-str
                                                               (replace-regexp-in-string "{feature}" feature-arg command-template) t t))))
 
-(defun* feature-run-cucumber (cuke-opts market-arg &key feature-file)
+(defun feature-run-cucumber (cuke-opts market-arg &key feature-file)
   "Runs cucumber with the specified options"
   (feature-register-verify-redo (list 'feature-run-cucumber
                                       cuke-opts
