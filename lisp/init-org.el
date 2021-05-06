@@ -115,21 +115,41 @@ typical word processor."
 (setq org-support-shift-select t)
 
 ;;; Capturing
-
-(setq org-default-notes-file "~/org/flux.org")
+(let ((default-directory "~/Dropbox/org/"))
+  (setq org-default-notes-file-path (expand-file-name "notes.org"))
+  (setq todo-file-path (expand-file-name "gtd.org"))
+  (setq refile-file-path (expand-file-name "refile.org"))
+  (setq journal-file-path (expand-file-name "journal.org"))
+  (setq org-agenda-files '("~/Dropbox/org/")))
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(setq org-capture-templates
-      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
-         "* NEXT %?\n%U\n" :clock-resume t)
-        ("n" "note" entry (file "")
-         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
-        ("j" "Journal entry" plain
-         (file+datetree+prompt "~/Dropbox/journal.org")
-         "%K - %a\n%i\n%?\n")
-        ))
+;; Remove empty LOGBOOK drawers on clock out
+(defun bh/remove-empty-drawer-on-clock-out ()
+  (interactive)
+  (save-excursion
+    (beginning-of-line 0)
+    (org-remove-empty-drawer-at "LOGBOOK" (point))))
 
+(add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
+(setq org-capture-templates
+      (quote (("t" "todo" entry (file refile-file-path)
+               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("r" "respond" entry (file refile-file-path)
+               "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+              ("n" "note" entry (file refile-file-path)
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "Journal" entry (file+datetree journal-file-path)
+               "* %?\n%U\n" :clock-in t :clock-resume t)
+              ("w" "org-protocol" entry (file refile-file-path)
+               "* TODO Review %c\n%U\n" :immediate-finish t)
+              ("m" "Meeting" entry (file refile-file-path)
+               "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+              ("p" "Phone call" entry (file refile-file-path)
+               "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("h" "Habit" entry (file refile-file-path)
+               "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;;; Refiling
 
@@ -184,7 +204,7 @@ typical word processor."
 ;;       org-gcal-client-secret "Snd5S5QJn7y741_o6NnaqH_9"
 ;;       org-gcal-file-alist '(("vincent.boucheny@fluxfederation" .  "~/.org/gcal.org")))
 
-(setq org-agenda-files '("~/org/flux.org"))
+(setq org-agenda-files '("~/Dropbox/org/"))
 
 (defun after-load-org ()
   (add-to-list 'org-modules 'org-timer 'org-habit))
